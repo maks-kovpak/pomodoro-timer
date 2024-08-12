@@ -6,7 +6,7 @@ import Timer from './components/Timer';
 const App = () => {
   return (
     <View style={styles.container}>
-      <Timer initialTime={{ minutes: 0, seconds: 30 }} />
+      <Timer initialTime={{ minutes: 25, seconds: 0 }} />
       <StatusBar style="dark" />
     </View>
   );

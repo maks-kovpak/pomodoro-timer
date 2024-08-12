@@ -20,37 +20,22 @@ const Timer: React.FC<{ initialTime: TimerTime; start?: boolean }> = ({
   initialTime,
   start = true,
 }) => {
-  const [minutes, setMinutes] = useState(initialTime.minutes);
-  const [seconds, setSeconds] = useState(initialTime.seconds);
-
-  const getTime = useCallback(
-    (deadline: Date) => {
-      if (!start) return;
-
-      const time = deadline.getTime() - Date.now();
-
-      setMinutes(Math.floor((time / 1000 / 60) % 60));
-      setSeconds(Math.floor((time / 1000) % 60));
-    },
-    [start]
-  );
+  const [seconds, setSeconds] = useState(initialTime.minutes * 60 + initialTime.seconds);
 
   useEffect(() => {
-    const deadline = new Date();
-    deadline.setMinutes(deadline.getMinutes() + initialTime.minutes);
-    deadline.setSeconds(deadline.getSeconds() + initialTime.seconds);
+    if (!start || seconds <= 0) return;
 
     const inteval = setInterval(() => {
-      getTime(deadline);
+      setSeconds((prev) => prev - 1);
     }, 1000);
 
     return () => clearInterval(inteval);
-  }, [initialTime]);
+  }, [start, seconds]);
 
   return (
     <>
-      <Text style={styles.countdown}>{withLeadingZero(minutes)}</Text>
-      <Text style={styles.countdown}>{withLeadingZero(seconds)}</Text>
+      <Text style={styles.countdown}>{withLeadingZero(Math.floor(seconds / 60))}</Text>
+      <Text style={styles.countdown}>{withLeadingZero(seconds % 60)}</Text>
     </>
   );
 };
