@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { withLeadingZero } from '../lib/utils';
 
