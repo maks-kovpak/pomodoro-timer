@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { theme } from './lib/theme';
 import Timer from './components/Timer';
-import ButtonsRow from './components/buttons-row';
+import ButtonsRow from './components/ButtonsRow';
 
 const App = () => {
   const [start, setStart] = useState(false);

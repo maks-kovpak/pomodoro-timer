@@ -1,9 +1,13 @@
 import React, { ReactNode } from 'react';
 import { View, StyleSheet, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
 
-const Button: React.FC<
-  PressableProps & { title: ReactNode; color: string; style?: StyleProp<ViewStyle> }
-> = ({ title, color, style, ...props }) => {
+interface ButtonProps extends PressableProps {
+  title: ReactNode;
+  color: string;
+  style?: StyleProp<ViewStyle>;
+}
+
+const Button: React.FC<ButtonProps> = ({ title, color, style, ...props }) => {
   return (
     <Pressable style={[styles.button, { backgroundColor: color }, style]} {...props}>
       <View>{title}</View>

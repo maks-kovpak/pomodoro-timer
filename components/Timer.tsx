@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { withLeadingZero } from '../lib/utils';
+import { theme } from '../lib/theme';
 
-interface TimerTime {
-  minutes: number;
-  seconds: number;
+interface TimerProps {
+  initialTime: {
+    minutes: number;
+    seconds: number;
+  };
+  start?: boolean;
 }
 
-const Timer: React.FC<{ initialTime: TimerTime; start?: boolean }> = ({
-  initialTime,
-  start = true,
-}) => {
+const Timer: React.FC<TimerProps> = ({ initialTime, start = true }) => {
   const [seconds, setSeconds] = useState(initialTime.minutes * 60 + initialTime.seconds);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 120,
     fontWeight: '900',
     lineHeight: 120,
-    color: '#471515',
+    color: theme.textColor,
   },
 });
 
