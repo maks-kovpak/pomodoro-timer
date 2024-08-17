@@ -2,15 +2,6 @@ import { useState, useEffect } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { withLeadingZero } from '../lib/utils';
 
-const styles = StyleSheet.create({
-  countdown: {
-    fontSize: 120,
-    fontWeight: '900',
-    lineHeight: 120,
-    color: '#471515',
-  },
-});
-
 interface TimerTime {
   minutes: number;
   seconds: number;
@@ -39,5 +30,14 @@ const Timer: React.FC<{ initialTime: TimerTime; start?: boolean }> = ({
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  countdown: {
+    fontSize: 120,
+    fontWeight: '900',
+    lineHeight: 120,
+    color: '#471515',
+  },
+});
 
 export default Timer;

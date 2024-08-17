@@ -1,6 +1,15 @@
 import React, { ReactNode } from 'react';
-import { View, StyleSheet, Pressable } from 'react-native';
-import type { ButtonProps } from 'flowbite-react';
+import { View, StyleSheet, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
+
+const Button: React.FC<
+  PressableProps & { title: ReactNode; color: string; style?: StyleProp<ViewStyle> }
+> = ({ title, color, style, ...props }) => {
+  return (
+    <Pressable style={[styles.button, { backgroundColor: color }, style]} {...props}>
+      <View>{title}</View>
+    </Pressable>
+  );
+};
 
 const styles = StyleSheet.create({
   button: {
@@ -8,21 +17,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 24,
     paddingHorizontal: 32,
-    borderRadius: 32,
+    borderRadius: 24,
   },
 });
-
-const Button: React.FC<ButtonProps & { title: ReactNode; color: string }> = ({
-  title,
-  color,
-  onPress,
-  ...props
-}) => {
-  return (
-    <Pressable style={[{ backgroundColor: color }, styles.button]} onPress={onPress} {...props}>
-      <View>{title}</View>
-    </Pressable>
-  );
-};
 
 export default Button;
