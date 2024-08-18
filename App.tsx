@@ -5,17 +5,20 @@ import { StatusBar } from 'expo-status-bar';
 import { theme } from './lib/theme';
 import Timer from './components/Timer';
 import ButtonsRow from './components/ButtonsRow';
+import TimerProvider from './providers/TimerProvider';
 
 const App = () => {
   const [start, setStart] = useState(false);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Timer initialTime={{ minutes: 25, seconds: 0 }} start={start} />
-      <ButtonsRow startedTimer={start} setStartedTimer={setStart} />
+    <TimerProvider>
+      <SafeAreaView style={styles.container}>
+        <Timer start={start} />
+        <ButtonsRow startedTimer={start} setStartedTimer={setStart} />
 
-      <StatusBar style="dark" />
-    </SafeAreaView>
+        <StatusBar style="dark" />
+      </SafeAreaView>
+    </TimerProvider>
   );
 };
 
