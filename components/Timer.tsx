@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text } from 'react-native';
+import { useAudio } from '../hooks';
 import { withLeadingZero } from '../lib/utils';
 import { theme } from '../lib/theme';
-import { useAudio } from '../lib/hooks';
 
 interface TimerProps {
   initialTime: {
