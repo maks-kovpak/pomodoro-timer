@@ -34,9 +34,9 @@ const Timer: React.FC<TimerProps> = ({ initialTime, start = true }) => {
 
 const styles = StyleSheet.create({
   countdown: {
-    fontSize: 120,
+    fontSize: 180,
     fontWeight: '900',
-    lineHeight: 120,
+    lineHeight: 180,
     color: theme.textColor,
   },
 });
