@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { useAudio, useTimer } from '../hooks';
+import { useAudio } from '../hooks';
 import { withLeadingZero } from '../lib/utils';
 import { theme } from '../lib/theme';
+import { useTimer } from '../stores/timer';
 
 interface TimerProps {
   start?: boolean;
@@ -11,7 +12,7 @@ interface TimerProps {
 const alarm = require('../assets/audio/alarm.mp3');
 
 const Timer: React.FC<TimerProps> = ({ start = true }) => {
-  const { time } = useTimer();
+  const time = useTimer((state) => state.time);
   const [seconds, setSeconds] = useState(time.minutes * 60 + time.seconds);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const Timer: React.FC<TimerProps> = ({ start = true }) => {
 
   useEffect(() => {
     if (seconds <= 0) {
-      playSound();
+      void playSound();
     }
   }, [seconds]);
 
