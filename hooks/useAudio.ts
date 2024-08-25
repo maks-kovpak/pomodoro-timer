@@ -1,5 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Audio, AVPlaybackSource } from 'expo-av';
+import { Audio } from 'expo-av';
+import { useEffect, useState } from 'react';
+
+import type { AVPlaybackSource } from 'expo-av';
 
 export const useAudio = (src: AVPlaybackSource) => {
   const [sound, setSound] = useState<Audio.Sound>();

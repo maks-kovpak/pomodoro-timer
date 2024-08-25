@@ -1,5 +1,8 @@
-import React, { ReactNode } from 'react';
-import { View, StyleSheet, Pressable, PressableProps, StyleProp, ViewStyle } from 'react-native';
+import React from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
+
+import type { ReactNode } from 'react';
+import type { PressableProps, StyleProp, ViewStyle } from 'react-native';
 
 interface ButtonProps extends PressableProps {
   title: ReactNode;

@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
+
 import { useAudio } from '../hooks';
-import { withLeadingZero } from '../lib/utils';
 import { theme } from '../lib/theme';
+import { withLeadingZero } from '../lib/utils';
 import { useTimer } from '../stores/timer';
 
 import type { FC } from 'react';
@@ -11,6 +12,7 @@ interface TimerProps {
   start?: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const alarm = require('../assets/audio/alarm.mp3');
 
 const Timer: FC<TimerProps> = ({ start = true }) => {

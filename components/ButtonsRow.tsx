@@ -1,12 +1,13 @@
-import { StyleSheet, View } from 'react-native';
+import { faEllipsis, faForward, faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPlay, faPause, faEllipsis, faForward } from '@fortawesome/free-solid-svg-icons';
-import { theme } from '../lib/theme';
-import Button from './Button';
+import { StyleSheet, View } from 'react-native';
 
+import Button from './Button';
+import { theme } from '../lib/theme';
+
+import type { Dispatcher } from '../lib/types';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import type { FC } from 'react';
-import type { Dispatcher } from '../lib/types';
 
 interface ButtonsRowProps {
   startedTimer: boolean;

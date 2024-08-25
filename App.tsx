@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
-import { theme } from './lib/theme';
-import Timer from './components/Timer';
 import ButtonsRow from './components/ButtonsRow';
+import Timer from './components/Timer';
+import { theme } from './lib/theme';
 
 const App = () => {
   const [start, setStart] = useState(false);

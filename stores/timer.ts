@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+
 import type { TimeDefinition } from '../lib/types';
 
 export interface TimerStore {
