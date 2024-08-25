@@ -5,13 +5,15 @@ import { withLeadingZero } from '../lib/utils';
 import { theme } from '../lib/theme';
 import { useTimer } from '../stores/timer';
 
+import type { FC } from 'react';
+
 interface TimerProps {
   start?: boolean;
 }
 
 const alarm = require('../assets/audio/alarm.mp3');
 
-const Timer: React.FC<TimerProps> = ({ start = true }) => {
+const Timer: FC<TimerProps> = ({ start = true }) => {
   const time = useTimer((state) => state.time);
   const [seconds, setSeconds] = useState(time.minutes * 60 + time.seconds);
 
@@ -30,11 +32,11 @@ const Timer: React.FC<TimerProps> = ({ start = true }) => {
   useEffect(() => {
     if (!start || seconds <= 0) return;
 
-    const inteval = setInterval(() => {
+    const interval = setInterval(() => {
       setSeconds((prev) => prev - 1);
     }, 1000);
 
-    return () => clearInterval(inteval);
+    return () => clearInterval(interval);
   }, [start, seconds]);
 
   return (

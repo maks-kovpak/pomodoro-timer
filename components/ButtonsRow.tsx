@@ -5,6 +5,7 @@ import { theme } from '../lib/theme';
 import Button from './Button';
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import type { FC } from 'react';
 import type { Dispatcher } from '../lib/types';
 
 interface ButtonsRowProps {
@@ -12,7 +13,7 @@ interface ButtonsRowProps {
   setStartedTimer: Dispatcher<boolean>;
 }
 
-const SecondaryButton: React.FC<{ icon: IconDefinition }> = ({ icon }) => {
+const SecondaryButton: FC<{ icon: IconDefinition }> = ({ icon }) => {
   return (
     <Button
       title={<FontAwesomeIcon icon={icon} color={theme.textColor} size={24} />}
@@ -22,7 +23,7 @@ const SecondaryButton: React.FC<{ icon: IconDefinition }> = ({ icon }) => {
   );
 };
 
-const ButtonsRow: React.FC<ButtonsRowProps> = ({ startedTimer, setStartedTimer }) => {
+const ButtonsRow: FC<ButtonsRowProps> = ({ startedTimer, setStartedTimer }) => {
   const mainIcon = (
     <FontAwesomeIcon icon={startedTimer ? faPause : faPlay} color={theme.textColor} size={32} />
   );

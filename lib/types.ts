@@ -1,3 +1,5 @@
+import type { Dispatch, SetStateAction } from 'react';
+
 export interface TimeDefinition {
   minutes: number;
   seconds: number;
@@ -5,4 +7,4 @@ export interface TimeDefinition {
 
 /* Utils */
 
-export type Dispatcher<T> = React.Dispatch<React.SetStateAction<T>>;
+export type Dispatcher<T> = Dispatch<SetStateAction<T>>;
