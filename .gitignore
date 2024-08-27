@@ -31,3 +31,7 @@ yarn-error.*
 
 # TypeScript
 *.tsbuildinfo
+
+# Editors/IDEs
+.vscode
+.idea
