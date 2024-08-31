@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import { useAudio, useTheme } from '../hooks';
-import { withLeadingZero } from '../lib/utils';
+import { wait, withLeadingZero } from '../lib/utils';
+import { useSettings } from '../stores/settings';
 import { useTimer } from '../stores/timer';
 
 import type { FC } from 'react';
@@ -19,6 +20,7 @@ const Timer: FC<TimerProps> = ({ start = true }) => {
   const styles = createStyles(theme);
 
   const { time, setTime, isBreak, setBreak } = useTimer();
+  const { focusTime, breakTime } = useSettings();
   const [seconds, setSeconds] = useState(time.minutes * 60 + time.seconds);
 
   useEffect(() => {
@@ -26,8 +28,10 @@ const Timer: FC<TimerProps> = ({ start = true }) => {
   }, [time]);
 
   const { playSound } = useAudio(alarm, () => {
-    setTime({ seconds: isBreak ? 10 : 5, minutes: 0 });
-    setBreak(!isBreak);
+    wait(100).then(() => {
+      setTime(isBreak ? focusTime : breakTime);
+      setBreak(!isBreak);
+    });
   });
 
   useEffect(() => {

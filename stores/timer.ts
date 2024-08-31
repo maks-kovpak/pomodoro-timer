@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 
+import { useSettings } from './settings';
+
 import type { TimeDefinition } from '../lib/types';
 
 export interface TimerStore {
@@ -10,7 +12,7 @@ export interface TimerStore {
 }
 
 export const useTimer = create<TimerStore>((set) => ({
-  time: { minutes: 25, seconds: 0 },
+  time: useSettings.getState().focusTime,
   isBreak: false,
   setTime: (time: TimeDefinition) => set({ time }),
   setBreak: (isBreak: boolean) => set({ isBreak }),
