@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-import { useAudio } from '../hooks';
-import { theme } from '../lib/theme';
+import { useAudio, useTheme } from '../hooks';
 import { withLeadingZero } from '../lib/utils';
 import { useTimer } from '../stores/timer';
 
@@ -16,7 +15,10 @@ interface TimerProps {
 const alarm = require('../assets/audio/alarm.mp3');
 
 const Timer: FC<TimerProps> = ({ start = true }) => {
-  const { time, setTime } = useTimer();
+  const theme = useTheme();
+  const styles = createStyles(theme);
+
+  const { time, setTime, isBreak, setBreak } = useTimer();
   const [seconds, setSeconds] = useState(time.minutes * 60 + time.seconds);
 
   useEffect(() => {
@@ -24,7 +26,8 @@ const Timer: FC<TimerProps> = ({ start = true }) => {
   }, [time]);
 
   const { playSound } = useAudio(alarm, () => {
-    setTime({ seconds: 5, minutes: 0 });
+    setTime({ seconds: isBreak ? 10 : 5, minutes: 0 });
+    setBreak(!isBreak);
   });
 
   useEffect(() => {
@@ -51,13 +54,15 @@ const Timer: FC<TimerProps> = ({ start = true }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  countdown: {
-    fontSize: 180,
-    fontWeight: '900',
-    lineHeight: 180,
-    color: theme.textColor,
-  },
-});
+const createStyles = (theme: ReturnType<typeof useTheme>) => {
+  return StyleSheet.create({
+    countdown: {
+      fontSize: 180,
+      fontWeight: '900',
+      lineHeight: 180,
+      color: theme.textColor,
+    },
+  });
+};
 
 export default Timer;

@@ -4,9 +4,12 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 
 import ButtonsRow from './components/ButtonsRow';
 import Timer from './components/Timer';
-import { theme } from './lib/theme';
+import { useTheme } from './hooks';
 
 const App = () => {
+  const theme = useTheme();
+  const styles = createStyles(theme);
+
   const [start, setStart] = useState(false);
 
   return (
@@ -19,13 +22,15 @@ const App = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.backgroundColor,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const createStyles = (theme: ReturnType<typeof useTheme>) => {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.backgroundColor,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
+};
 
 export default App;

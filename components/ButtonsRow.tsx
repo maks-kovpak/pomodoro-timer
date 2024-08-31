@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { StyleSheet, View } from 'react-native';
 
 import Button from './Button';
-import { theme } from '../lib/theme';
+import { useTheme } from '../hooks';
 
 import type { Dispatcher } from '../lib/types';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -15,6 +15,8 @@ interface ButtonsRowProps {
 }
 
 const SecondaryButton: FC<{ icon: IconDefinition }> = ({ icon }) => {
+  const theme = useTheme();
+
   return (
     <Button
       title={<FontAwesomeIcon icon={icon} color={theme.textColor} size={24} />}
@@ -25,6 +27,8 @@ const SecondaryButton: FC<{ icon: IconDefinition }> = ({ icon }) => {
 };
 
 const ButtonsRow: FC<ButtonsRowProps> = ({ startedTimer, setStartedTimer }) => {
+  const theme = useTheme();
+
   const mainIcon = (
     <FontAwesomeIcon icon={startedTimer ? faPause : faPlay} color={theme.textColor} size={32} />
   );
