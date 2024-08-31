@@ -16,14 +16,16 @@ interface TimerProps {
 const alarm = require('../assets/audio/alarm.mp3');
 
 const Timer: FC<TimerProps> = ({ start = true }) => {
-  const time = useTimer((state) => state.time);
+  const { time, setTime } = useTimer();
   const [seconds, setSeconds] = useState(time.minutes * 60 + time.seconds);
 
   useEffect(() => {
     setSeconds(time.minutes * 60 + time.seconds);
   }, [time]);
 
-  const { playSound } = useAudio(alarm);
+  const { playSound } = useAudio(alarm, () => {
+    setTime({ seconds: 5, minutes: 0 });
+  });
 
   useEffect(() => {
     if (seconds <= 0) {
