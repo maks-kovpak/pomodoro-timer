@@ -5,6 +5,7 @@ import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import NumberInput from './NumberInput';
 import SettingsItem from './SettingsItem';
 import { useTheme } from '../hooks';
+import { useSettings } from '../stores/settings';
 
 import type { Dispatcher } from '../lib/types';
 import type { FC } from 'react';
@@ -15,6 +16,8 @@ const SettingsModal: FC<{ visible: boolean; setVisible: Dispatcher<boolean> }> =
 }) => {
   const theme = useTheme();
   const styles = createStyles(theme);
+
+  const { focusTime, setFocusTime, breakTime, setBreakTime } = useSettings();
 
   return (
     <Modal
@@ -35,11 +38,25 @@ const SettingsModal: FC<{ visible: boolean; setVisible: Dispatcher<boolean> }> =
           <View style={styles.body}>
             <SettingsItem
               name="Focus length"
-              input={<NumberInput intialValue={25} min={0} max={60} />}
+              input={
+                <NumberInput
+                  intialValue={focusTime.minutes}
+                  min={0}
+                  max={60}
+                  onChangeValue={(value) => setFocusTime({ minutes: value, seconds: 0 })}
+                />
+              }
             />
             <SettingsItem
               name="Break length"
-              input={<NumberInput intialValue={5} min={0} max={60} />}
+              input={
+                <NumberInput
+                  intialValue={breakTime.minutes}
+                  min={0}
+                  max={60}
+                  onChangeValue={(value) => setBreakTime({ minutes: value, seconds: 0 })}
+                />
+              }
             />
           </View>
         </View>

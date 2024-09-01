@@ -7,7 +7,7 @@ import type { TextInputProps } from 'react-native';
 
 interface NumberInputProps extends TextInputProps {
   intialValue?: number;
-  onChangeValue?: (value: string) => void;
+  onChangeValue?: (value: number) => void;
   min?: number;
   max?: number;
   step?: number;
@@ -31,7 +31,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
 
     if (!isNaN(numericValue) && numericValue >= min && numericValue <= max) {
       setInternalValue(numericValue);
-      onChangeValue?.(text);
+      onChangeValue?.(numericValue);
     }
   };
 
@@ -39,14 +39,14 @@ const NumberInput: React.FC<NumberInputProps> = ({
     const currentValue = internalValue || 0;
     const newValue = Math.min(currentValue + step, max);
     setInternalValue(newValue);
-    onChangeValue?.(newValue.toString());
+    onChangeValue?.(newValue);
   };
 
   const decreaseValue = () => {
     const currentValue = internalValue || 0;
     const newValue = Math.max(currentValue - step, min);
     setInternalValue(newValue);
-    onChangeValue?.(newValue.toString());
+    onChangeValue?.(newValue);
   };
 
   return (

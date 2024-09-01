@@ -25,7 +25,7 @@ const App = () => {
       />
       <SettingsModal visible={modalVisible} setVisible={setModalVisible} />
 
-      <StatusBar style="dark" />
+      <StatusBar style="light" backgroundColor="transparent" />
     </SafeAreaView>
   );
 };
