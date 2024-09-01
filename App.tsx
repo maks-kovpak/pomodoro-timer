@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 
 import ButtonsRow from './components/ButtonsRow';
+import SettingsModal from './components/SettingsModal';
 import Timer from './components/Timer';
 import { useTheme } from './hooks';
 
@@ -11,11 +12,18 @@ const App = () => {
   const styles = createStyles(theme);
 
   const [start, setStart] = useState(false);
+  const [modalVisible, setModalVisible] = useState(true);
 
   return (
     <SafeAreaView style={styles.container}>
       <Timer start={start} />
-      <ButtonsRow startedTimer={start} setStartedTimer={setStart} />
+      <ButtonsRow
+        startedTimer={start}
+        setStartedTimer={setStart}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
+      <SettingsModal visible={modalVisible} setVisible={setModalVisible} />
 
       <StatusBar style="dark" />
     </SafeAreaView>

@@ -14,6 +14,8 @@ import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 interface ButtonsRowProps {
   startedTimer: boolean;
   setStartedTimer: Dispatcher<boolean>;
+  modalVisible: boolean;
+  setModalVisible: Dispatcher<boolean>;
 }
 
 const SecondaryButton: FC<{ icon: IconDefinition; onPress?: () => void }> = ({ icon, onPress }) => {
@@ -29,7 +31,12 @@ const SecondaryButton: FC<{ icon: IconDefinition; onPress?: () => void }> = ({ i
   );
 };
 
-const ButtonsRow: FC<ButtonsRowProps> = ({ startedTimer, setStartedTimer }) => {
+const ButtonsRow: FC<ButtonsRowProps> = ({
+  startedTimer,
+  setStartedTimer,
+  modalVisible,
+  setModalVisible,
+}) => {
   const theme = useTheme();
 
   const { setTime, setBreak } = useTimer();
@@ -41,7 +48,7 @@ const ButtonsRow: FC<ButtonsRowProps> = ({ startedTimer, setStartedTimer }) => {
 
   return (
     <View style={styles.buttons}>
-      <SecondaryButton icon={faEllipsis} />
+      <SecondaryButton icon={faEllipsis} onPress={() => setModalVisible(!modalVisible)} />
 
       <Button
         title={mainIcon}
